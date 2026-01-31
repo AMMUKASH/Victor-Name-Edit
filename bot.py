@@ -6,7 +6,7 @@ from pyrogram.errors import UserNotParticipant
 # --- CONFIGURATION (UPDATED) ---
 API_ID = 34135757  # Corrected: Numbers only
 API_HASH = "d3d5548fe0d98eb1fb793c2c37c9e5c8"  # Corrected: Inside quotes
-BOT_TOKEN = "8583239839:AAH6JyFb1cRqmq-XKf0Z6ns7yRYPoL9_nU8"
+BOT_TOKEN = "8583239839:AAG0rqcHHtuslCOWTHnosTcXbexqafIcBdw"
 
 OWNER_ID = 8482447535
 LOG_GROUP = -1003867805165

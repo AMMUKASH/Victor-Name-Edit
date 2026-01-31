@@ -93,11 +93,16 @@ async def start_handler(c, m):
     await m.reply_photo(
         photo=START_IMG,
         caption=(
-            f"✨ **Hello {m.from_user.first_name}!**\n\n"
-            "Main aapke simple name ko **100+ Aesthetic aur Stylish Fonts** mein badal sakta hoon.\n\n"
-            "**Kaise use karein?**\n"
-            "Bas apna naam niche type karke bhejein!\n\n"
-            "🎵 **Music Commands:** `/play`, `/skip`, `/stop` (Work in Groups)"
+            f"​✨ Hello [Name]! Welcome to Victor Edit Bot ✨
+━━━━━━━━━━━━━━━━━━━━━━━━
+​Main aapke simple naam ko 100+ Unique aur Aesthetic Styles mein badal sakta hoon.
+​🛠️ Kaise Use Karein?
+1️⃣ Bas apna naam niche type karke bhejein.
+2️⃣ Bot aapko turant stylish list bhej dega.
+3️⃣ Kisi bhi style par Tap karein aur copy karein!
+​📢 Official Updates: @radhesupport
+━━━━━━━━━━━━━━━━━━━━━━━━
+👇 Apna Naam Bhejein Aur Magic Dekhein!)"
         ),
         reply_markup=START_BTN
     )

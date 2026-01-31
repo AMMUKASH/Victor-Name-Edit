@@ -13,15 +13,15 @@ def home():
     return "Stylish Font Bot is Live!"
 
 def run():
-    # Render default port logic
-    port = int(os.environ.get('PORT', 8080))
+    # Render default port logic - 10000 is often preferred by Render
+    port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
 
 def keep_alive():
     t = Thread(target=run)
     t.start()
 
-# --- CONFIGURATION (Updated from) ---
+# --- CONFIGURATION ---
 API_ID = 34135757
 API_HASH = "d3d5548fe0d98eb1fb793c2c37c9e5c8"
 BOT_TOKEN = "8583239839:AAHsTIG-8b4Fnk3Q9t-h6N4zBoX_1yfQC8k"
@@ -42,17 +42,11 @@ def get_font(text, font_type):
         "bubble": "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ"
     }
     target = fonts.get(font_type, normal)
-    # Filter to handle only alphabets for mapping
     return "".join([target[normal.index(c)] if c in normal else c for c in text])
 
 # --- 100+ STYLISH DESIGN LIST ---
 def get_styles(name):
-    # Font generations
-    f_sc = get_font(name, "small_caps")
-    f_sr = get_font(name, "script")
-    f_bs = get_font(name, "bold_serif")
-    f_ds = get_font(name, "double_struck")
-    f_bb = get_font(name, "bubble")
+    f_sc, f_sr, f_bs, f_ds, f_bb = [get_font(name, t) for t in ["small_caps", "script", "bold_serif", "double_struck", "bubble"]]
 
     templates = [
         "•⎯᪵⎯𐎓⃝꯭✨ ⃪꯭ {} ꯭𝄄𝆺𝆭💖", "✦⸙⃪𐎓꯭꯭✨〭〬 {} ꯭🜲𝆭💞", "🝐‌꯭᪳⸙⃪꯭ {} ⸩⃪🍁", "𓆩꯭〭〬♡‌┼ᶦϻ‌ᷲ‌ꯦ {} !!🌺𓆪",
@@ -84,11 +78,8 @@ def get_styles(name):
 
     results = []
     font_pool = [f_sc, f_sr, f_bs, f_ds, f_bb]
-    
     for i, temp in enumerate(templates):
-        selected_font = font_pool[i % len(font_pool)]
-        # Keeping formatting logic for 100+ styles
-        results.append(temp.format(selected_font))
+        results.append(temp.format(font_pool[i % 5]))
     return results
 
 # --- KEYBOARDS ---
@@ -105,7 +96,8 @@ BACK_BTN = InlineKeyboardMarkup([[InlineKeyboardButton("🔙 BACK", callback_dat
 async def start_cmd(c, m):
     try:
         await bot.send_message(LOG_GROUP, f"👤 **New User:** {m.from_user.mention}\n🆔 `ID: {m.from_user.id}`")
-    except: pass
+    except Exception as e:
+        print(f"Log Group Error: {e}")
     await m.reply_photo(
         photo=START_IMG,
         caption=(
@@ -123,7 +115,6 @@ async def broadcast_handler(c, m):
     if not m.reply_to_message:
         return await m.reply_text("👉 Reply to a message with `/broadcast`.")
     msg = await m.reply_text("🚀 **Broadcasting...**")
-    # Using provided broadcast logic
     await m.reply_to_message.copy(m.chat.id)
     await msg.edit("✅ **Broadcast Completed!**")
 
@@ -147,12 +138,13 @@ async def styler(c, m):
     res += "━━━━━━━━━━━━━━━━━━━━\n\n"
     
     for s in styles:
-        # Wrap in backticks for tap-to-copy functionality
-        res += f"👉 `{s}`\n\n"
+        res += f"👉 `{s}`\n\n" # Tap-to-copy backticks
         
-    res += "━━━━━━━━━━━━━━━━━━━━\n⚡ **Tap to copy!**"
+    res += "━━━━━━━━━━━━━━━━━━━━\n"
+    res += "⚡ **Tap to copy!**\n\n"
+    res += "ᴩᴏᴡᴇʀᴅ ʙʏ - @XenoEmpir\n" # Footer Powered By
+    res += "Update - https://t.me/radhesupport" # Footer Update Link
     
-    # Handle Telegram's 4096 character limit
     if len(res) > 4096:
         for x in range(0, len(res), 4096):
             await m.reply_text(res[x:x+4096])
@@ -161,5 +153,5 @@ async def styler(c, m):
 
 if __name__ == "__main__":
     keep_alive()
-    print("✅ Bot is Online with 100+ Styles!")
+    print("✅ Bot is Online with Port 10000 & Custom Footer!")
     bot.run()

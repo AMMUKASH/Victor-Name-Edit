@@ -99,7 +99,7 @@ def get_styles(name):
 
 # --- KEYBOARDS ---
 START_BTN = InlineKeyboardMarkup([
-    [InlineKeyboardButton("♻ 𝐀ᴅᴅ 𝐌𝝴 𝝸𝝶 𝐘𝞂𝞄𝐑 𝐆𝐑𝞂𝞄𝞀 ♻", url="https://t.me/VictorStylishBot?startgroup=true")],
+    [InlineKeyboardButton("♻ 𝐀ᴅᴅ 𝐌𝝴 𝝸𝝶 𝐘𝞂𝞄𝐑 𝐆𝐑𝞂𝞄𝞀 ♻", url="https://t.me/StylishNamBot?startgroup=true")],
     [InlineKeyboardButton("❂ 𝐔𝛒ᴅ𝛂𝛕𝛆 ❂", url="https://t.me/radhesupport"),
      InlineKeyboardButton("❂ 𝐒𝛖𝛒𝛒𝛔ʀ𝛕 ❂", url="https://t.me/+PKYLDIEYiTljMzMx")],
     [InlineKeyboardButton("❂ 𝐇𝛆𝛊𝛒 & 𝐆𝛖𝛊ᴅ𝛆 ❂", callback_data="help_data")]
